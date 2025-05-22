@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estructura CIJ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .grid-cij {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 0 30px;
+      grid-template-areas:
+        "main-filter       header-result"
+        " sidebar ajax"
+        "icons-industrias  ajax"
+        "wrap-unidades  ajax";
+    }
+
+    .main-filter        { grid-area: main-filter; background: #f3f3f3; padding: 10px; }
+    .wrap-unidades      { grid-area: wrap-unidades; background: #e6f7ff; padding: 10px; }
+    .icons-industrias   { grid-area: icons-industrias; background: #fff3cd; padding: 10px; }
+    .sidebar            { grid-area: sidebar; background: #f8d7da; padding: 10px; }
+    .header-result      { grid-area: header-result; background: #d4edda; padding: 10px; }
+    .ajax-load-more-wrap { grid-area: ajax; background: #d1ecf1; padding: 10px; }
+
+    @media (max-width: 768px) {
+      .grid-cij {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "main-filter"
+          "header-result"
+          "ajax"
+          "wrap-unidades"
+          "icons-industrias"
+          
+          "sidebar";
+      }
+
+      .grid-cij > * {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Vista Grid CIJ</h1>
+
+  <div class="grid-cij">
+    <div class="main-filter">🧰 Filtro</div>
+    <div class="wrap-unidades">🏢 Unidades</div>
+    <div class="icons-industrias">🏭 Industrias</div>
+    <div class="sidebar">📂 Sidebar (columna izquierda, último / en mobile al final)</div>
+    <div class="header-result">📊 Header Resultados</div>
+    <div class="ajax-load-more-wrap">🔄 Ajax Load More</div>
+  </div>
+
+</body>
+</html>

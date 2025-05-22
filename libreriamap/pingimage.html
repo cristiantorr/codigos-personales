@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa Interactivo</title>
+    <style>
+      /* Estilo para el contenedor del mapa */
+      .map-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Estilo para la imagen del mapa */
+      .world-map {
+        width: 100%;
+        height: auto;
+      }
+
+      /* Estilo para los pines (íconos) */
+      .pins .pin {
+        position: absolute;
+        font-size: 24px;
+        color: red;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      /* Estilo para el área de título */
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mapa Interactivo</h1>
+
+    <!-- Imagen del mapa del mundo -->
+    <div class="map-container" style="background-color: #08254f">
+      <img
+        src="mapa.png"
+        alt="Mapa del mundo"
+        usemap="#worldmap"
+        class="world-map"
+      />
+
+      <!-- Definir las áreas (países) del mapa donde podemos colocar íconos -->
+      <map name="worldmap">
+        <area
+          shape="rect"
+          coords="50,250,150,350"
+          href="#"
+          alt="Colombia"
+          title="Colombia"
+          class="country"
+          data-country="colombia"
+        />
+        <area
+          shape="rect"
+          coords="200,180,300,280"
+          href="#"
+          alt="México"
+          title="México"
+          class="country"
+          data-country="mexico"
+        />
+        <area
+          shape="rect"
+          coords="500,100,600,200"
+          href="#"
+          alt="Europa"
+          title="Europa"
+          class="country"
+          data-country="europa"
+        />
+      </map>
+
+      <!-- Área para los pines (íconos) -->
+      <div class="pins">
+        <div id="colombia-pin" class="pin" style="top: 300px; left: 100px">
+          📍
+        </div>
+        <div id="mexico-pin" class="pin" style="top: 230px; left: 250px">
+          📍
+        </div>
+        <div id="europa-pin" class="pin" style="top: 150px; left: 550px">
+          📍
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".country").forEach((area) => {
+        area.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Obtener el nombre del país desde el atributo "data-country"
+          const country = area.getAttribute("data-country");
+
+          // Colocar el pin sobre el país seleccionado
+          const pin = document.getElementById(`${country}-pin`);
+          pin.style.visibility = "visible"; // Mostrar el pin si es invisible
+        });
+      });
+    </script>
+  </body>
+</html>

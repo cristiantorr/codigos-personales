@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa Interactivo con ImageMapster</title>
+
+    <style>
+      /* Estilo para el contenedor del mapa */
+      .map-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Estilo para la imagen del mapa */
+      .world-map {
+        width: 100%;
+        height: auto;
+      }
+
+      /* Estilo para los pines (íconos) */
+      .pin {
+        position: absolute;
+        font-size: 24px;
+        color: red;
+        z-index: 10;
+      }
+
+      /* Estilo para el área de título */
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mapa Interactivo con ImageMapster</h1>
+
+    <!-- Imagen del mapa del mundo -->
+    <div class="map-container">
+      <img
+        src="mapa.png"
+        alt="Mapa del mundo"
+        usemap="#worldmap"
+        class="world-map"
+        id="world-map"
+      />
+
+      <!-- Definir las áreas (países) del mapa donde podemos colocar íconos -->
+      <map name="worldmap">
+        <area
+          shape="rect"
+          coords="50,250,150,350"
+          href="#"
+          alt="Colombia"
+          title="Colombia"
+          class="country"
+          data-country="colombia"
+        />
+        <area
+          shape="rect"
+          coords="200,180,300,280"
+          href="#"
+          alt="México"
+          title="México"
+          class="country"
+          data-country="mexico"
+        />
+        <area
+          shape="rect"
+          coords="500,100,600,200"
+          href="#"
+          alt="Europa"
+          title="Europa"
+          class="country"
+          data-country="europa"
+        />
+      </map>
+
+      <!-- Área para los pines (íconos) -->
+      <div class="pins">
+        <div
+          id="colombia-pin"
+          class="pin"
+          style="top: 300px; left: 100px; visibility: hidden"
+        >
+          📍
+        </div>
+        <div
+          id="mexico-pin"
+          class="pin"
+          style="top: 230px; left: 250px; visibility: hidden"
+        >
+          📍
+        </div>
+        <div
+          id="europa-pin"
+          class="pin"
+          style="top: 150px; left: 550px; visibility: hidden"
+        >
+          📍
+        </div>
+      </div>
+    </div>
+    <!-- Cargar jQuery desde CDN primero -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Cargar ImageMapster después de jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imagemapster/1.5.3/jquery.imagemapster.min.js"></script>
+    <script>
+      // Asegurarnos de que el DOM esté listo antes de ejecutar el código
+      jQuery(document).ready(function () {
+        // Usar ImageMapster para hacer la imagen interactiva
+        jQuery("#world-map").imageMapster({
+          // Definir las opciones para las áreas interactivas
+          mapKey: "data-country",
+          onClick: function (e) {
+            var country = e.key; // Obtener el país al hacer clic
+            var pin = document.getElementById(country + "-pin");
+
+            // Mostrar u ocultar el pin correspondiente al área seleccionada
+            if (pin.style.visibility === "hidden") {
+              pin.style.visibility = "visible";
+            } else {
+              pin.style.visibility = "hidden";
+            }
+          },
+          fillColor: "rgba(0, 0, 255, 0.5)", // Color de resaltar el área cuando se pasa el mouse
+          fillOpacity: 0.6,
+          strokeColor: "blue",
+          strokeWidth: 1,
+        });
+      });
+    </script>
+  </body>
+</html>

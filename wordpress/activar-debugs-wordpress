@@ -1,0 +1,14 @@
+El parámetro que debemos añadir es el que sigue. Si queremos activar el modo DEBUG debe estar en “true”:
+
+define('WP_DEBUG', true);
+
+Si además queremos tener el modo DEBUG de WordPress activo pero que no se muestren los mensajes en WordPress (ideal para plugins como P3 Profiler o Query Monitor), debemos añadir este otro parámetro en “false”:
+
+define('WP_DEBUG_DISPLAY', false);
+
+Si queremos que todos registros producidos por el modo DEBUG se guarden en un archivo de registro en la instalación de WordPress, debemos añadir el siguiente parámetro:
+
+define('WP_DEBUG_LOG', true);
+
+Los registros se guardarán en la ruta /wp-content/debug.log y podremos abrirlo con cualquier editor de texto si accedemos al hosting o servidor por FTP.
+

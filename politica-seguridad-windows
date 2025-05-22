@@ -1,0 +1,40 @@
+Solución: Cambiar la política de ejecución de PowerShell
+Abrir PowerShell como Administrador:
+
+Haz clic derecho en el menú de inicio y selecciona "Windows PowerShell (Administrador)" o "Windows Terminal (Administrador)".
+Esto abrirá una ventana de PowerShell con privilegios elevados (de administrador).
+Verificar la política de ejecución actual: Para ver qué política de ejecución tienes configurada, ejecuta el siguiente comando en PowerShell:
+
+powershell
+Copiar código
+Get-ExecutionPolicy
+Esto te devolverá algo como:
+
+Restricted: No permite la ejecución de scripts (es el valor predeterminado en algunas versiones de Windows).
+RemoteSigned: Permite scripts locales, pero los scripts descargados desde internet deben estar firmados.
+Unrestricted: Permite la ejecución de todos los scripts, incluidos los descargados de internet.
+Cambiar la política de ejecución a RemoteSigned:
+
+Si tu política está establecida como Restricted (lo que impide la ejecución de cualquier script), puedes cambiarla a RemoteSigned, lo cual es más seguro y permitirá ejecutar los scripts necesarios para herramientas como Grunt.
+
+Ejecuta el siguiente comando en PowerShell:
+
+powershell
+Copiar código
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Explicación:
+
+RemoteSigned: Permite la ejecución de scripts locales sin restricciones, pero los scripts descargados de internet deben estar firmados por un editor confiable.
+-Scope CurrentUser: Establece la política solo para el usuario actual (sin afectar a otros usuarios del sistema).
+Confirmar el cambio:
+
+Después de ejecutar el comando anterior, PowerShell te pedirá que confirmes el cambio. Escribe Y y presiona Enter para confirmar.
+
+Verificar el cambio:
+
+Para asegurarte de que el cambio se ha realizado correctamente, puedes verificar la política de ejecución nuevamente:
+
+powershell
+Copiar código
+Get-ExecutionPolicy
+Deberías ver que ahora la política es RemoteSigned.

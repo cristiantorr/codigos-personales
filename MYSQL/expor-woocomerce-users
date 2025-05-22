@@ -1,0 +1,40 @@
+SELECT 
+    u.ID AS user_id,
+    u.user_login,
+    u.user_email,
+    u.user_registered,
+    um.meta_key,
+    um.meta_value,
+    wc.*,
+    u.user_pass AS password_hash -- Incluye el hash de la contraseña
+FROM 
+    wp_users u
+INNER JOIN 
+    wp_usermeta um ON u.ID = um.user_id
+INNER JOIN 
+    wp_wc_customer_lookup wc ON u.ID = wc.user_id
+WHERE 
+    u.ID IN (
+        SELECT user_id 
+        FROM wp_usermeta 
+        WHERE meta_key = 'wp_capabilities' 
+          AND meta_value LIKE '%customer%'
+    )
+ORDER BY 
+    u.ID ;
+
+    VERIFICAR USUARIOS CON EL USER_LOGIN COMO CORREO Y ELIMINARLOS 
+
+    SELECT u.ID
+FROM mc_users u
+JOIN mc_usermeta um ON u.ID = um.user_id
+WHERE um.meta_key = 'mc_capabilities' 
+AND um.meta_value LIKE '%business%'
+AND u.user_login  LIKE '%@%';
+
+DELETE u, um
+FROM mc_users u
+JOIN mc_usermeta um ON u.ID = um.user_id
+WHERE um.meta_key = 'mc_capabilities' 
+AND um.meta_value LIKE '%business%'
+AND u.user_login NOT LIKE '%@%';

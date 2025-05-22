@@ -1,0 +1,7 @@
+SELECT bin.id, bin.nombre, bin.celular, bin.job as Trabajo, bin.correo , bin.fecha_creacion,  pais.paisnombre as país, 
+departamento.estadonombre as departamento, ciudad.nombre as ciudad
+FROM  prdaluminams.almw_formulario_bin as bin
+INNER JOIN prdaluminams.almw_pais as pais ON bin.pais = pais.id
+INNER JOIN prdaluminams.almw_estado as departamento ON bin.departamento = departamento.id
+INNER JOIN prdaluminams.almw_municipios as ciudad ON bin.ciudad = ciudad.id limit 9999999999;
+

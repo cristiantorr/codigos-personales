@@ -1,0 +1,602 @@
+/*Resetted labels*/
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+a img {
+  border: none;
+  outline: none;
+}
+input {
+  outline: none;
+}
+img {
+  max-width: 100%;
+}
+* {
+  hyphens: none !important;
+}
+figure {
+  margin: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #0054a6;
+  font-family: "Montserrat-ExtraBold";
+}
+/*END Resetted labels*/
+
+/*
+  BODY
+*/
+
+body {
+  font-size: 16px;
+  color: #6c6c6c;
+  font-family: "Montserrat-Medium";
+  -webkit-font-smoothing: antialiased;
+  &:after {
+    width: 100%;
+    height: 100vh;
+    left: -100%;
+    margin: 0 auto;
+    top: 0;
+    z-index: 8;
+    content: "";
+    position: fixed;
+    transition: all 0.4s ease-out;
+    background: rgba(0, 19, 85, 0.8);
+  }
+  &.open-nav-xs {
+    overflow: hidden;
+    header {
+      border-bottom-color: transparent;
+      nav {
+        left: 0;
+      }
+    }
+    &:after {
+      left: 0;
+    }
+  }
+}
+
+/*
+  MENÚS y MENÚ HAMBURGUESA
+*/
+
+header {
+  background-color: #fff;
+  padding: 20px 0 30px 0;
+  z-index: 9;
+  position: relative;
+  margin: 0 auto;
+  .logo {
+    max-width: 190px;
+  }
+  .wrapper-main {
+    position: relative;
+  }
+  .redes {
+    position: absolute;
+    right: 0;
+    top: -10px;
+    li {
+      transition: all 0.3s ease;
+      &:hover {
+        transform: translateY(-5px);
+        img {
+          filter: grayscale(0%);
+          opacity: 1;
+        }
+      }
+    }
+    img {
+      transition: all 0.3s ease;
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+  }
+  .flex-center {
+    align-items: end;
+  }
+  nav {
+    margin-top: 30px;
+    ul {
+      li {
+        font-family: "Montserrat-SemiBold";
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0;
+        position: relative;
+        font-size: 17px;
+        a {
+          border-right: 2px solid #002d59;
+          color: #0054a6;
+          display: block;
+          transition: all 0.3s ease;
+          padding: 0 22px;
+          &:hover {
+            color: #337fff;
+          }
+        }
+        &:last-child {
+          a {
+            border: 0;
+            padding-right: 0;
+          }
+        }
+        &:hover {
+          ul.sub-menu {
+            height: auto;
+            opacity: 1;
+            transform: translateY(-5px);
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+}
+
+ul.sub-menu {
+  position: absolute;
+  left: -15px;
+  background: #9ac123;
+  width: 200px;
+  padding: 10px 15px;
+  border-radius: 3px;
+  top: 45px;
+  overflow: hidden;
+  transform: translate(0, 10px);
+  transition: height 0ms 400ms, opacity 400ms 0ms ease-in,
+    transform 400ms 0ms ease-in, visibility 400ms 0ms ease-in;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  li {
+    text-shadow: none;
+    width: 100%;
+    border-right: 0;
+    margin: 0;
+    a {
+      color: #fff !important;
+      padding: 8px 0;
+      font-size: 15px;
+      border: 0 !important;
+      transition: all 0.3s ease;
+      &:hover {
+        // color: #0c3915 !important;
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+ul li.menu-item-has-children > a:before {
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  content: "";
+  display: block;
+  background-color: transparent;
+}
+
+.redes {
+  display: inline-block;
+  vertical-align: top;
+  margin: 30px 0;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    li {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 10px;
+      a {
+        background-size: 100% !important;
+        transition: all 0.3s ease;
+        display: block;
+        color: #fff;
+        text-indent: -9999px;
+        width: 30px;
+        height: 30px;
+      }
+      &.icon-ws {
+        a {
+          background: url("../images/icon-ws.png") no-repeat center center;
+        }
+      }
+      &.icon-it {
+        a {
+          background: url("../images/icon-it.png") no-repeat center center;
+        }
+      }
+      &.icon-fb {
+        a {
+          background: url("../images/icon-fb.png") no-repeat center center;
+        }
+      }
+
+      &.icon-yt {
+        a {
+          background: url("../images/icon-yt.png") no-repeat center center;
+        }
+      }
+      &.icon-x {
+        a {
+          background: url("../images/icon-x.png") no-repeat center center;
+        }
+      }
+      &.icon-ct {
+        a {
+          background: url("../images/icon-ct.png") no-repeat center center;
+        }
+      }
+      &.icon-lk {
+        a {
+          background: url("../images/icon-lk.png") no-repeat center center;
+        }
+      }
+    }
+  }
+}
+
+// Menú hamburguesa
+#nav-toogle {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  z-index: 99;
+  border-radius: 50%;
+  border: 0 solid transparent;
+  display: inline-block;
+  vertical-align: top;
+  right: 15px;
+  top: 33px;
+  display: none;
+}
+#nav-toogle span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #0054a6;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0%;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+  z-index: 99;
+}
+#nav-toogle span:nth-child(1) {
+  top: 11px;
+}
+#nav-toogle span:nth-child(2),
+#nav-toogle span:nth-child(3) {
+  top: 30px;
+}
+#nav-toogle span:nth-child(4) {
+  top: 21px;
+}
+#nav-toogle.open span:nth-child(1) {
+  left: 50%;
+  top: 21px;
+  width: 0%;
+}
+#nav-toogle.open span:nth-child(2) {
+  transform: rotate(45deg);
+  top: 21px;
+}
+#nav-toogle.open span {
+  background: #0054a6 !important;
+}
+#nav-toogle.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 21px;
+}
+#nav-toogle.open span:nth-child(4) {
+  left: 50%;
+  top: 21px;
+  width: 0%;
+}
+/*******/
+
+/**
+  GRIDS POR 4 
+*/
+.main-carrousel-home {
+  padding: 50px 0 50px 0;
+}
+.grid-carrousel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 30px;
+}
+.card-carrousel {
+  h3,
+  h4 {
+    font-family: "Montserrat-ExtraBold";
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    min-height: 52px;
+  }
+  p {
+    margin: 0 0 20px 0;
+    min-height: 120px;
+  }
+  i {
+    background-color: #ffd221;
+    margin-bottom: 25px;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    text-align: center;
+    max-width: 270px;
+    height: 260px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    img {
+      max-height: 150px;
+    }
+  }
+  .more {
+    color: #0054a6;
+    text-decoration: underline;
+    font-size: 16px;
+    font-family: "Montserrat-Bold";
+    margin-top: 20px;
+    transition: all 0.3s ease;
+  }
+}
+
+.card-logistica {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 50px;
+  border-top: 2px solid #ffd221;
+  padding: 50px 0;
+  text-align: justify;
+  font-size: 18px;
+  h3 {
+    font-size: 36px;
+    margin: 0 0 30px 0;
+    padding-top: 40px;
+  }
+  .more {
+    color: #0054a6;
+    text-decoration: underline;
+    font-size: 16px;
+    font-family: "Montserrat-Bold";
+    margin-top: 20px;
+    transition: all 0.3s ease;
+  }
+  .info {
+    position: relative;
+  }
+  .logos {
+    position: absolute;
+    left: 0;
+    bottom: 50px;
+    max-width: 200px;
+    img {
+      max-height: 100px;
+    }
+  }
+}
+
+/****/
+/*
+  MEDIA QUIERIES
+*/
+
+/* ------------------------------Ipad Horizontal---------------------------- */
+@media handheld, only screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
+/* ------------------------------Ipad Vertical---------------------------- */
+@media handheld, only screen and (min-width: 768px) and (max-width: 1023px) {
+  #nav-toogle {
+    display: block !important;
+  }
+}
+
+/* ---------------------------- 320px-640px -------------------------- */
+@media handheld, only screen and (max-width: 667px) {
+  #nav-toogle {
+    display: block !important;
+  }
+  .grid-none-xs,
+  .flex-none-xs {
+    display: block !important;
+  }
+  header {
+    padding: 20px 15px;
+    nav {
+      position: absolute;
+      left: -100%;
+      top: 80px;
+      width: 100%;
+      transition: all 0.4s ease-out;
+      padding: 0 15px;
+      ul {
+        li {
+          width: 100%;
+          margin: 0 0;
+          text-align: left;
+          border-bottom: 1px solid #fff;
+          a {
+            color: #fff;
+            padding: 12px 0;
+            border: 0;
+            &:hover,
+            &:focus {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  header {
+    .logo {
+      max-width: 140px;
+    }
+    .redes {
+      right: 30px;
+      top: -10px;
+      max-width: 110px;
+      margin: 0;
+      li {
+        margin: 5px !important;
+      }
+    }
+  }
+}
+
+/*
+  CSS DEFAULTS
+*/
+
+/*Default styles*/
+.grid {
+  display: grid;
+  gap: 30px;
+}
+
+.flex {
+  display: flex;
+}
+.flex-lightbox {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+.flex-center {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.flex-between {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+.grid-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.grid-4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.grid-2-repeat {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-3-repeat {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-4-repeat {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.swiper {
+  overflow: hidden !important;
+}
+.clear-fix {
+  &::after {
+    content: "";
+    clear: both;
+    width: 100%;
+    display: block;
+  }
+}
+.mb-none {
+  margin-bottom: 0;
+}
+.padding-none {
+  padding-left: 0;
+  padding-right: 0;
+}
+.text-center {
+  text-align: center;
+}
+.full {
+  clear: both;
+  width: 100%;
+}
+.pl-none {
+  padding-left: 0;
+}
+.pr-none {
+  padding-right: 0;
+}
+.plr-none {
+  padding-left: 0;
+  padding-right: 0;
+}
+.clr {
+  clear: both;
+  float: none;
+}
+.center {
+  margin: auto;
+}
+.inline {
+  display: inline-block;
+  vertical-align: top;
+}
+.inline-bottom {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.relative {
+  position: relative;
+}
+.wrapper-main {
+  max-width: 1170px;
+}
+.wrapper-main-lg {
+  max-width: 1230px;
+}
+.wrapper-main-md {
+  max-width: 1000px;
+}
+.wrapper-main-sm {
+  max-width: 850px;
+}
+/*END Default styles*/
+/******/

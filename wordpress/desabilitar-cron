@@ -1,0 +1,2 @@
+define('DISABLE_WP_CRON', false);
+define('ALTERNATE_WP_CRON', false);

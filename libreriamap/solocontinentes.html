@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa con Imagen de Fondo</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <style>
+      #map {
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+      // Crear el mapa y centrarlo en el centro del mundo
+      var map = L.map("map").setView([0, 0], 2); // Centro en el ecuador y nivel de zoom 2 para mostrar el mundo
+
+      // Configurar una imagen que se utilizará como fondo
+      var imageUrl = "MAPA-1.svg"; // Sustituye esto con la ruta correcta a tu imagen
+      var imageBounds = [
+        [-90, -180],
+        [90, 180],
+      ]; // Definir las coordenadas del mundo (latitud, longitud)
+
+      // Agregar la imagen como fondo
+      L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+      // Agregar un marcador en Colombia (lat: 4.5709, lon: -74.2973)
+      var markerColombia = L.marker([4.5709, -74.2973]).addTo(map);
+      markerColombia.bindPopup("<b>Colombia</b>").openPopup();
+
+      // Agregar un marcador en Brasil (lat: -14.2350, lon: -51.9253)
+      var markerBrasil = L.marker([-14.235, -51.9253]).addTo(map);
+      markerBrasil.bindPopup("<b>Brasil</b>").openPopup();
+    </script>
+  </body>
+</html>

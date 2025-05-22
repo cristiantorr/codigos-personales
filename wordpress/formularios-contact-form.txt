@@ -1,0 +1,6 @@
+ CUANDO SE AGREGAN TÉRMINOS Y CONDICIONES
+ 
+ <!-- <label for="">[acceptance acceptance-881 optional] Al enviar este formulario, usted confirma que ha revisado y está de acuerdo con nuestros <a href="javascript:;">Términos de Uso</a> y <a href="javascript:;">Política de Privacidad.</a>[/acceptance]</label>-->
+
+ AJUSTES ADICIONALES
+ acceptance_as_validation: on

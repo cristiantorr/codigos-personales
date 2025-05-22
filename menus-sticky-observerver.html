@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menú</title>
+  </head>
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #mainHeader {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background: white;
+      padding: 10px;
+      z-index: 10;
+      transition: position 0.3s;
+    }
+
+    #section {
+      position: relative;
+      margin-top: 200px; /* para simular espacio arriba */
+      padding-bottom: 100px;
+    }
+
+    #sectionHeader {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      padding: 10px;
+      z-index: 9;
+      transition: position 0.3s;
+    }
+
+    #mainHeader.sticky {
+      position: sticky;
+      top: 0;
+    }
+
+    #sectionHeader.fixed {
+      height: 64px;
+      position: fixed;
+      top: 50px; /* altura de mainHeader */
+    }
+  </style>
+  <body>
+    <header id="mainHeader">Header 1</header>
+
+    <section id="section">
+      <div class="content">
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+      </div>
+    </section>
+    <header id="sectionHeader">Header 2</header>
+    <section>
+      <div class="content">
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+        <p>Contenido largo para hacer scroll...</p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia ratione
+          dicta quisquam est amet enim, dolorem, distinctio molestias ipsa,
+          ullam magni dolor alias nihil asperiores ex velit vitae? Perferendis,
+          maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Architecto suscipit, enim dolorum cupiditate voluptatem laborum at
+          perspiciatis. Itaque animi inventore sunt. Id quasi, blanditiis quia
+          repudiandae maiores dolores nihil! Qui. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quod deserunt similique sit ex alias
+          nulla, inventore, voluptatibus a eligendi nemo velit aspernatur,
+          cupiditate repellat aliquam eos molestias atque magnam dolorem.
+        </p>
+      </div>
+    </section>
+    <script>
+      const mainHeader = document.getElementById("mainHeader");
+      const sectionHeader = document.getElementById("sectionHeader");
+
+      let lastScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const sectionHeaderOffsetTop = sectionHeader.offsetTop; // posición original
+
+      window.addEventListener("scroll", () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const headerHeight = mainHeader.offsetHeight;
+
+        // Scroll hacia abajo
+        if (currentScroll > lastScrollTop) {
+          mainHeader.classList.add("sticky");
+
+          if (currentScroll >= sectionHeaderOffsetTop - headerHeight) {
+            sectionHeader.classList.add("fixed");
+            sectionHeader.style.top = `${headerHeight}px`;
+          }
+        }
+        // Scroll hacia arriba
+        else {
+          if (currentScroll < sectionHeaderOffsetTop - headerHeight) {
+            sectionHeader.classList.remove("fixed");
+            sectionHeader.style.top = "";
+          }
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      });
+    </script>
+  </body>
+</html>

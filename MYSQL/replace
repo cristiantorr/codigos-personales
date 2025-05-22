@@ -1,0 +1,12 @@
+UPDATE dbinteraseo_local.iaaedo_wfconfig set val = REPLACE(val,  'interaseo.com.co', 'interaseo.local');
+
+
+Para futuros cambios de las url donde se encuentra almacenadas las imagenes de la multimedia, se cambian en estos archivos:
+
+* app/Http/Controllers/DashboardController.php
+* resources/views/product.blade.php
+
+
+$ wp search-replace 'https://cdn.alumina-actual.local.co/' 'https://cdn.alumina.com.co/' --skip-columns=guid
+
+

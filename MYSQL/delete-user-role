@@ -1,0 +1,40 @@
+//eliminar usuarios
+
+DELETE FROM mc_users WHERE ID IN (
+    SELECT user_id FROM mc_usermeta WHERE meta_key = 'mc_capabilities' AND meta_value LIKE '%business%'
+);
+
+//eliminar posts
+DELETE FROM mc_posts WHERE post_type = 'verify_nit';
+
+//habilitar y deshabilitar dsafemode
+
+
+SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 1;
+
+DELETE FROM  escl_scorm_course_evaluation
+DELETE FROM  escl_scorm_learner_test
+DELETE FROM  escl_scorm_progress
+DELETE FROM  escl_scorm_learners
+
+qW@MEa6MsGW5xzR
+DELETE FROM escl_users WHERE ID IN (
+    SELECT user_id FROM escl_usermeta WHERE meta_key = 'escl_capabilities' AND meta_value LIKE '%learner%'
+);
+
+VERIFICAR USUARIOS CON EL USER_LOGIN COMO CORREO Y ELIMINARLOS 
+
+SELECT u.ID
+FROM mc_users u
+JOIN mc_usermeta um ON u.ID = um.user_id
+WHERE um.meta_key = 'mc_capabilities' 
+AND um.meta_value LIKE '%business%'
+AND u.user_login  LIKE '%@%';
+
+DELETE u, um
+FROM mc_users u
+JOIN mc_usermeta um ON u.ID = um.user_id
+WHERE um.meta_key = 'mc_capabilities' 
+AND um.meta_value LIKE '%business%'
+AND u.user_login NOT LIKE '%@%';

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabla con Imágenes en los Títulos</title>
+    <!-- Incluir Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Incluir FontAwesome para íconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Estilos personalizados */
+      .icono-confirmacion {
+        font-size: 24px; /* Tamaño del ícono */
+        color: green; /* Color del ícono */
+      }
+      table {
+        width: 100%;
+      }
+      th,
+      td {
+        text-align: center;
+        vertical-align: middle; /* Centra verticalmente el contenido */
+      }
+      th i {
+        width: 30px;
+        height: 30px;
+        display: block !important;
+        margin: 0 auto;
+        animation: palpitacion 1s infinite; /* Animación de palpitación */
+
+      }
+
+        /* Definición de la animación */
+        @keyframes palpitacion {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2); /* Aumenta el tamaño */
+          opacity: 0.8; /* Le da un efecto de atenuación */
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1; /* Vuelve al tamaño original */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-5">
+      <table class="table table-bordered table-striped">
+        <thead class="table-light">
+          <tr>
+            <th>ALIMENTOS Y BEBIDAS</th>
+            <th>
+              CJI
+              <i class="fa-solid fa-camera"></i>
+            </th>
+            <th>
+              LASER
+              <i class="fa-solid fa-coffee">
+            </th>
+            <th>
+              TTO
+              <i class="fa-solid fa-heart"></i>
+
+            </th>
+            <th>
+              TIJ
+              <i class="fa-solid fa-circle-plus"></i>
+            </th>
+            <th>
+              LCM
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </th>
+            <th>
+              LPA
+              <i class="fa-solid fa-skull-crossbones"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filas de la tabla -->
+          <tr>
+            <td>
+              • Plástico Rígido (Botellas, contenedores, bandejas, tubos, etc.)
+            </td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>• Plástico Flexible (Bolsas, sellado, envolturas, etc.)</td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+          </tr>
+          <tr>
+            <td>• Aluminio (Bolsas, envolturas, etc.)</td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+          </tr>
+          <tr>
+            <td>
+              • Cartón Delgado (Envases, recipientes, fundas, tubos, cajas,
+              etc.)
+            </td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+          </tr>
+          <tr>
+            <td>• Papel (Bolsas, fundas, envolturas, etc.)</td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>• Metal (Latas)</td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+          </tr>
+          <tr>
+            <td>• Vidrio (Botellas, frascos, envases, etc.)</td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td></td>
+            <td></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+            <td><i class="fas fa-check icono-confirmacion"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Incluir Bootstrap JS (opcional para interactividad) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

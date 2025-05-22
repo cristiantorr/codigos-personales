@@ -1,0 +1,47 @@
+<div class="relative inline-block">
+  <button class="btn_tooltip w-3">clip here</button>
+
+  <div class="section_tooltip">
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nisi
+        a vitae. Eaque ab aspernatur a delectus, nisi qui distinctio repudiandae
+        enim ipsa, rerum modi doloribus, amet vitae tempora eum. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Vitae tempore deleniti hic
+        neque voluptatum optio dolores aut assumenda nobis distinctio at nemo
+        eveniet cupiditate a impedit, eaque, saepe maiores expedita?
+      </p>
+      <button class="close_tooltip">×</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const btn_tooltips = document.querySelectorAll(".btn_tooltip");
+
+  if (btn_tooltips.length > 0) {
+    btn_tooltips.forEach((btn, index) => {
+      const wrapper = btn.closest(".relative");
+
+      const section_tooltip = wrapper.querySelector(".section_tooltip");
+      const close_tooltip = wrapper.querySelector(".close_tooltip");
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeAllTooltips;
+        section_tooltip.classList.remove("hidden", "pointer-events-none");
+      });
+
+      close_tooltip.addEventListener("click", (e) => {
+        e.stopPropagation();
+        section_tooltip.classList.add("hidden", "pointer-events-none");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!wrapper.contains(e.target)) {
+          section_tooltip.classList.add("opacity-0", "pointer-events-none");
+          section_tooltip.classList.remove("opacity-100");
+        }
+      });
+    });
+  }
+</script>

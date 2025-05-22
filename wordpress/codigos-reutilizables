@@ -1,0 +1,28 @@
+* menus:
+
+<?php if ( has_nav_menu('social-nav') ): ?>
+      <div class="redes">    
+      
+        <?php wp_nav_menu( array(
+            'theme_location'  => 'social-nav',
+            'menu_class'      => false,
+            'container'       => '',
+            'container_class' => '',
+            'items_wrap'      => '<ul id="%1s" class="%2s">%3$s</ul>',
+          ) ); ?>
+    
+  </div>
+  <?php endif; ?>
+
+* Contacto
+<?php 
+// ACF para página de contacto
+$sectionForm = get_field('section_contact');
+
+if( $sectionForm && $sectionForm['enable_section'] && !empty($sectionForm['contact_form']) ):
+  $contactChoice = $sectionForm['contact_form']; ?>		
+
+<?php /*** Form */
+      echo do_shortcode( sprintf( '[contact-form-7 id="%1$s" title="%2$s"]', $contactChoice->ID, $contactChoice->post_title ) );
+    ?>
+
