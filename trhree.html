@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fondo interactivo estilo David Whyte</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="webgl"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+  <script id="vertexShader" type="x-shader/x-vertex">
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  </script>
+
+  <script id="fragmentShader" type="x-shader/x-fragment">
+    uniform float uTime;
+    uniform vec2 uMouse;
+    uniform sampler2D uTexture;
+    varying vec2 vUv;
+
+    void main() {
+      vec2 uv = vUv;
+
+      // Distorsión suave tipo onda
+      float wave = sin(uv.y * 10.0 + uTime * 1.5) * 0.01;
+      uv.x += wave;
+
+      // Distorsión por movimiento del mouse
+      float dist = distance(uv, uMouse);
+      uv += (uMouse - uv) * 0.1 * smoothstep(0.4, 0.0, dist);
+
+      vec3 color = texture2D(uTexture, uv).rgb;
+      gl_FragColor = vec4(color, 1.0);
+    }
+  </script>
+
+  <script>
+    const canvas = document.querySelector('#webgl');
+    const renderer = new THREE.WebGLRenderer({ canvas });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
+    camera.position.z = 1;
+
+    const loader = new THREE.TextureLoader();
+    loader.load('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', texture => {
+      const geometry = new THREE.PlaneGeometry(2, 2);
+
+      const uniforms = {
+        uTime: { value: 0 },
+        uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+        uTexture: { value: texture }
+      };
+
+      const material = new THREE.ShaderMaterial({
+        vertexShader: document.getElementById('vertexShader').textContent,
+        fragmentShader: document.getElementById('fragmentShader').textContent,
+        uniforms
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      let clock = new THREE.Clock();
+
+      // Mouse movement
+      window.addEventListener('mousemove', e => {
+        uniforms.uMouse.value.x = e.clientX / window.innerWidth;
+        uniforms.uMouse.value.y = 1.0 - e.clientY / window.innerHeight;
+      });
+
+      function animate() {
+        uniforms.uTime.value = clock.getElapsedTime();
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+    });
+
+    // Responsive
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+
+</html>
