@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Reveal Shader Paint Effect with Glow on Cursor</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="webgl"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+  <script id="vertexShader" type="x-shader/x-vertex">
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  </script>
+
+  <script id="fragmentShader" type="x-shader/x-fragment">
+    uniform sampler2D uPaint;
+    uniform sampler2D uBackground;
+    uniform vec2 uMousePos;    // posición del cursor en UV
+    uniform float uRadius;     // radio del área iluminada
+    varying vec2 vUv;
+
+    void main() {
+      float alpha = texture2D(uPaint, vUv).r; // zona pintada (más blanca = menos opaco)
+      vec3 color = texture2D(uBackground, vUv).rgb;
+
+      // Distancia al cursor
+      float dist = distance(vUv, uMousePos);
+
+      // Brillo suave dentro del radio con smoothstep para bordes suaves
+      float glow = smoothstep(uRadius, 0.0, dist);
+
+      // Aumentar brillo (puedes ajustar el factor 0.5)
+      color *= 1.0 + 0.5 * glow;
+
+      gl_FragColor = vec4(color, 1.0 - alpha);
+    }
+  </script>
+
+  <script>
+    const canvas = document.querySelector('#webgl');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const loader = new THREE.TextureLoader();
+
+    // Tamaño de la textura para pintar
+    const size = 512;
+
+    // Render target para la máscara de pintura
+    let paintRT = new THREE.WebGLRenderTarget(size, size, {
+      minFilter: THREE.LinearFilter,
+      magFilter: THREE.LinearFilter,
+      format: THREE.RGBAFormat
+    });
+
+    // Inicializar máscara negra (no pintado)
+    const initScene = new THREE.Scene();
+    const initMaterial = new THREE.MeshBasicMaterial({ color: 'black' });
+    initScene.add(new THREE.Mesh(geometry, initMaterial));
+    renderer.setRenderTarget(paintRT);
+    renderer.render(initScene, camera);
+    renderer.setRenderTarget(null);
+
+    // Material para acumular la pintura (igual que tu código)
+    const paintMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        uPrevTexture: { value: paintRT.texture },
+        uBrushPos: { value: new THREE.Vector2(0.5, 0.5) },
+        uBrushSize: { value: 0.1 }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D uPrevTexture;
+        uniform vec2 uBrushPos;
+        uniform float uBrushSize;
+        varying vec2 vUv;
+
+        void main() {
+          float prev = texture2D(uPrevTexture, vUv).r;
+          float dist = distance(vUv, uBrushPos);
+          float brush = smoothstep(uBrushSize, uBrushSize * 0.9, dist);
+          float alpha = max(prev, 1.0 - brush);
+          gl_FragColor = vec4(vec3(alpha), 1.0);
+        }
+      `
+    });
+
+    const paintScene = new THREE.Scene();
+    const paintMesh = new THREE.Mesh(geometry, paintMaterial);
+    paintScene.add(paintMesh);
+
+    // Cargar la imagen base y crear shader principal con el nuevo uniform uMousePos
+    loader.load('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', texture => {
+      window.mainMaterial = new THREE.ShaderMaterial({
+        vertexShader: document.getElementById('vertexShader').textContent,
+        fragmentShader: document.getElementById('fragmentShader').textContent,
+        uniforms: {
+          uPaint: { value: paintRT.texture },
+          uBackground: { value: texture },
+          uMousePos: { value: new THREE.Vector2(-1, -1) }, // Fuera de pantalla inicialmente
+          uRadius: { value: 0.15 }
+        }
+      });
+
+      const mesh = new THREE.Mesh(geometry, window.mainMaterial);
+      scene.add(mesh);
+
+      animate();
+    });
+
+    function paint(x, y) {
+      paintMaterial.uniforms.uBrushPos.value.set(x, y);
+      paintMaterial.uniforms.uPrevTexture.value = paintRT.texture;
+
+      renderer.setRenderTarget(paintRT);
+      renderer.render(paintScene, camera);
+      renderer.setRenderTarget(null);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = 1 - e.clientY / window.innerHeight;
+      paint(x, y);
+
+      if (window.mainMaterial) {
+        window.mainMaterial.uniforms.uMousePos.value.set(x, y);
+      }
+    });
+
+    function animate() {
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+
+</html>
