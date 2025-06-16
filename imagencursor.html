@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .image-container img {
+      display: block;
+    }
+
+    /* Overlay con opacidad */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      /* negro semitransparente */
+      pointer-events: none;
+      /* que no bloquee eventos */
+      transition: background 0.3s ease;
+    }
+
+    /* Cuando se pasa el cursor por .image-container,
+     el overlay desaparece en un círculo centrado en el cursor */
+    .image-container:hover .overlay {
+      background: radial-gradient(circle 60px at var(--x) var(--y), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    }
+  </style>
+
+  <div class="image-container" onmousemove="e => {
+       const rect = e.currentTarget.getBoundingClientRect();
+       e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+       e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+     }">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      alt="Imagen">
+    <div class="overlay"></div>
+  </div>
+
+</body>
+
+</html>
