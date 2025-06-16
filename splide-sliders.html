@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider Splide perPage 3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/css/splide.min.css"
+    />
+    <style>
+      .splide {
+        overflow: hidden;
+      }
+
+      .splide__slide img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .margin-left {
+        margin-left: 190px !important;
+      }
+
+      .margin-right {
+        margin-right: 190px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="splide" id="custom-slider">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <!-- 10 imágenes -->
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=1" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=2" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=3" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=4" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=5" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=6" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=7" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=8" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=9" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=10" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/js/splide.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const splide = new Splide("#custom-slider", {
+          type: "slide",
+          perPage: 3,
+          arrows: true,
+          perMove: 1,
+          pagination: false,
+          gap: "1rem",
+        });
+
+        const slides = document.querySelectorAll(
+          "#custom-slider .splide__slide"
+        );
+
+        splide.on("mounted moved", () => {
+          const index = splide.index;
+          const perPage = splide.options.perPage;
+          const endIndex = splide.Components.Controller.getEnd();
+
+          // Limpiar márgenes anteriores
+          slides.forEach((slide) => {
+            slide.classList.remove("margin-left", "margin-right");
+          });
+
+          // Si estamos al inicio, aplicar margin-left al primer slide visible
+          if (index === 0) {
+            slides[0]?.classList.add("margin-left");
+          }
+
+          // Si estamos al final, aplicar margin-right al último slide visible
+          if (index === endIndex) {
+            const lastVisibleIndex = index + perPage - 1;
+            slides[lastVisibleIndex]?.classList.add("margin-right");
+          }
+        });
+
+        splide.mount();
+      });
+    </script>
+  </body>
+</html>
