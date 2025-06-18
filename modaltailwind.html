@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modal YouTube sin API</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+  <!-- Botón para abrir el modal -->
+  <button id="openModal" class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
+    Ver Video
+  </button>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div
+      class=" rounded-lg shadow-lg w-full mx-4 sm:mx-6 md:mx-8 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl relative p-10">
+
+      <!-- Botón de cerrar -->
+      <button id="closeModal" class="absolute top-2 right-2 text-2xl text-gray-600 hover:text-red-600">
+        &times;
+      </button>
+
+      <!-- Contenedor del iframe con aspect ratio 16:9 -->
+      <div class="relative w-full pt-[56.25%]">
+        <iframe id="youtubeIframe" class="absolute top-0 left-0 w-full h-full rounded-b-lg"
+          src="https://www.youtube.com/embed/eGI29o5fEs0" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const modal = document.getElementById('modal');
+    const openBtn = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+    const iframe = document.getElementById('youtubeIframe');
+
+    // Guardar el src original del iframe
+    const originalSrc = iframe.src;
+
+    openBtn.addEventListener('click', () => {
+      iframe.src = originalSrc; // restaurar el src por si se había vaciado
+      modal.classList.remove('hidden');
+    });
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      iframe.src = ''; // quitar el src para detener el video
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  </script>
+
+</body>
+
+</html>
