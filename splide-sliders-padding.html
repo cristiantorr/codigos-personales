@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider Splide perPage 3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/css/splide.min.css"
+    />
+    <style>
+      .splide {
+        overflow: hidden;
+      }
+
+      .splide__slide img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .margin-left {
+        transition: margin-left 0.3s ease;
+        margin-left: 190px !important;
+      }
+
+      .margin-right {
+        transition: margin-right 0.9s ease;
+
+        margin-right: 190px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="splide" id="custom-slider">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <!-- 10 imágenes -->
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=1" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=2" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=3" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=4" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=5" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=6" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=7" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=8" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=9" />
+          </li>
+          <li class="splide__slide">
+            <img src="https://placehold.co/500x500?text=10" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/js/splide.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const splide = new Splide("#custom-slider", {
+          type: "slide",
+          perPage: 3,
+          arrows: true,
+          perMove: 1,
+          pagination: false,
+          gap: "1rem",
+          breakpoints: {
+            1024: {
+              padding: { left: "80px" },
+            },
+            768: {
+              padding: { left: "50px" },
+            },
+          },
+        });
+
+        const slides = document.querySelectorAll(".splide__slide");
+        const track = document.querySelector("#custom-slider .splide__track");
+
+        let isTranslated = false;
+
+        splide.on("mounted moved", () => {
+          const index = splide.index;
+          const endIndex = splide.Components.Controller.getEnd();
+
+          // Limpiar márgenes anteriores
+          slides.forEach((slide) => {
+            slide.classList.remove("margin-left", "margin-right");
+          });
+
+          // Agregar margen izquierdo solo al primer slide visible (si estamos al inicio)
+          if (index === 0) {
+            slides[index].classList.add("margin-left");
+          }
+
+          // Control para aplicar el translateX -190px solo 1 vez al final
+          if (index === endIndex) {
+            if (!isTranslated) {
+              const style = window.getComputedStyle(track);
+              const matrix = new DOMMatrix(style.transform);
+              const newTranslateX = matrix.m41 - 190;
+
+              // Agregar transición suave
+              track.style.transition = "transform 0.3s ease"; // puedes ajustar la duración y el tipo de easing
+
+              // Aplicar la transformación
+              track.style.transform = `translateX(${newTranslateX}px)`;
+              isTranslated = true;
+            }
+          } else {
+            if (isTranslated) {
+              track.style.transform = "";
+              isTranslated = false;
+            }
+          }
+        });
+
+        splide.on("drag", () => {
+          slides.forEach((slide) => {
+            track.style.transform = "";
+            slide.classList.remove("margin-left", "margin-right");
+          });
+        });
+
+        splide.mount();
+        const prev = slider.parentElement.querySelector(".gallery_prev");
+        const next = slider.parentElement.querySelector(".gallery_next");
+
+        prev?.addEventListener("click", () => splide_losani.go("<"));
+        next?.addEventListener("click", () => splide_losani.go(">"));
+      });
+    </script>
+  </body>
+</html>
