@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Slider de Premios</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Splide.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #e6ebf0, #ffffff);
+      color: #1f2c4c;
+      text-align: center;
+    }
+
+    .splide {
+      max-width: 800px;
+      margin: 80px auto 20px;
+    }
+
+    .slide-content h1 {
+      font-size: 100px;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .slide-content p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .view-awards {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: #1f2c4c;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .splide__arrow {
+      background-color: transparent;
+      border: 1px solid #999;
+      width: 40px;
+      height: 40px;
+      color: #1f2c4c;
+    }
+
+    .splide__arrow svg {
+      fill: #1f2c4c;
+      width: 16px;
+      height: 16px;
+    }
+
+    .splide__track {
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="year-slider" class="splide">
+    <div class="splide__track">
+      <ul class="splide__list">
+
+        <li class="splide__slide">
+          <div class="slide-content">
+            <h1>2022</h1>
+            <p><strong>CMy daughter was looking to purchase a new home and I pointed her in the direction of Losani. As
+                a previous Conciliator for Tarion, I was very familiar (and impressed) with the quality, workmanship,
+                and reputation of the brand. The sales team has been extremely helpful and courteous. We expect nothing
+                less for the remainder of the process. - Robert</strong></p>
+            <p>Platinum Club Member</p>
+          </div>
+        </li>
+
+        <li class="splide__slide">
+          <div class="slide-content">
+            <h1>2020</h1>
+            <p><strong>Canada’s 50 Best Managed Companies</strong></p>
+            <p>Gold Member</p>
+          </div>
+        </li>
+
+        <li class="splide__slide">
+          <div class="slide-content">
+            <h1>2018</h1>
+            <p><strong>Top 50 National Winners</strong></p>
+            <p>Silver Club Member</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <button class="view-awards">View all awards</button>
+
+  <!-- Splide.js Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
+  <script>
+    new Splide('#year-slider', {
+      type: 'loop',
+      //padding: '30%',
+      perPage: 1,
+      pagination: false,
+      arrows: true,
+      drag: true,
+      focus: 'center',
+      /* peek: {
+        before: 20,
+        after: 20,
+      }, */
+      gap: '30px',
+    }).mount();
+  </script>
+
+</body>
+
+</html>
