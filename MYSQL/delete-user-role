@@ -23,7 +23,7 @@ DELETE FROM escl_users WHERE ID IN (
     SELECT user_id FROM escl_usermeta WHERE meta_key = 'escl_capabilities' AND meta_value LIKE '%learner%'
 );
 
-//VERIFICAR USUARIOS CON EL USER_LOGIN COMO CORREO Y ELIMINARLOS 
+// VERIFICAR USUARIOS CON EL USER_LOGIN COMO CORREO Y ELIMINARLOS 
 
 SELECT u.ID
 FROM mc_users u
