@@ -4,7 +4,7 @@ DELETE FROM mc_users WHERE ID IN (
     SELECT user_id FROM mc_usermeta WHERE meta_key = 'mc_capabilities' AND meta_value LIKE '%business%'
 );
 
-//eliminar posts
+// eliminar posts
 DELETE FROM mc_posts WHERE post_type = 'verify_nit';
 
 // habilitar y deshabilitar dsafemode
