@@ -18,7 +18,7 @@ DELETE FROM  escl_scorm_learner_test
 DELETE FROM  escl_scorm_progress
 DELETE FROM  escl_scorm_learners
 
-qW@MEa6MsGW5xzR
+
 DELETE FROM escl_users WHERE ID IN (
     SELECT user_id FROM escl_usermeta WHERE meta_key = 'escl_capabilities' AND meta_value LIKE '%learner%'
 );
