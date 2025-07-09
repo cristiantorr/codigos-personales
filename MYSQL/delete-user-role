@@ -1,4 +1,4 @@
-//eliminar usuarios
+// eliminar usuarios en DB
 
 DELETE FROM mc_users WHERE ID IN (
     SELECT user_id FROM mc_usermeta WHERE meta_key = 'mc_capabilities' AND meta_value LIKE '%business%'
