@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerías con GLightbox</title>
+
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    article {
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .grid a img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Galerías independientes con GLightbox</h1>
+
+  <!-- Artículo 1 -->
+  <article>
+    <h2>Galería 1</h2>
+    <div class="grid">
+      <a href="https://picsum.photos/id/101/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/101/150/100" /></a>
+      <a href="https://picsum.photos/id/102/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/102/150/100" /></a>
+      <a href="https://picsum.photos/id/103/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/103/150/100" /></a>
+      <a href="https://picsum.photos/id/104/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/104/150/100" /></a>
+      <a href="https://picsum.photos/id/105/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/105/150/100" /></a>
+    </div>
+  </article>
+
+  <!-- Artículo 2 -->
+  <article>
+    <h2>Galería 2</h2>
+    <div class="grid">
+      <a href="https://picsum.photos/id/106/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/106/150/100" /></a>
+      <a href="https://picsum.photos/id/107/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/107/150/100" /></a>
+      <a href="https://picsum.photos/id/108/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/108/150/100" /></a>
+      <a href="https://picsum.photos/id/109/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/109/150/100" /></a>
+      <a href="https://picsum.photos/id/110/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/110/150/100" /></a>
+    </div>
+  </article>
+
+  <!-- Artículo 3 -->
+  <article>
+    <h2>Galería 3</h2>
+    <div class="grid">
+      <a href="https://picsum.photos/id/111/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/111/150/100" /></a>
+      <a href="https://picsum.photos/id/112/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/112/150/100" /></a>
+      <a href="https://picsum.photos/id/113/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/113/150/100" /></a>
+      <a href="https://picsum.photos/id/114/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/114/150/100" /></a>
+      <a href="https://picsum.photos/id/115/800/600" class="grid__gallery__image"><img
+          src="https://picsum.photos/id/115/150/100" /></a>
+    </div>
+  </article>
+
+  <!-- GLightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const articles = document.querySelectorAll("article");
+
+      articles.forEach((article, index) => {
+        const images = article.querySelectorAll(".grid__gallery__image");
+        images.forEach((img) => {
+          img.setAttribute("data-gallery", `gallery-${index}`);
+        });
+      });
+
+      GLightbox({
+        selector: ".grid__gallery__image",
+        touchNavigation: true,
+      });
+    });
+  </script>
+</body>
+
+</html>
