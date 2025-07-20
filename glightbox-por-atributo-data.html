@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerías con data-galleries</title>
+
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    article {
+      margin-bottom: 50px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .grid a img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Galerías con data-galleries por artículo</h1>
+
+  <!-- Artículo 1 -->
+  <article data-galleries='[
+    "https://picsum.photos/id/101/800/600",
+    "https://picsum.photos/id/102/800/600",
+    "https://picsum.photos/id/103/800/600",
+    "https://picsum.photos/id/104/800/600",
+    "https://picsum.photos/id/105/800/600"
+  ]'>
+    <h2>Galería 1</h2>
+    <p>Descripción de la galería 1.</p>
+    <div class="grid"></div>
+  </article>
+
+  <!-- Artículo 2 -->
+  <article data-galleries='[
+    "https://picsum.photos/id/106/800/600",
+    "https://picsum.photos/id/107/800/600",
+    "https://picsum.photos/id/108/800/600",
+    "https://picsum.photos/id/109/800/600",
+    "https://picsum.photos/id/110/800/600"
+  ]'>
+    <h2>Galería 2</h2>
+    <p>Descripción de la galería 2.</p>
+    <div class="grid"></div>
+  </article>
+
+  <!-- Artículo 3 -->
+  <article data-galleries='[
+    "https://picsum.photos/id/111/800/600",
+    "https://picsum.photos/id/112/800/600",
+    "https://picsum.photos/id/113/800/600",
+    "https://picsum.photos/id/114/800/600",
+    "https://picsum.photos/id/115/800/600"
+  ]'>
+    <h2>Galería 3</h2>
+    <p>Descripción de la galería 3.</p>
+    <div class="grid"></div>
+  </article>
+
+  <!-- GLightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const articles = document.querySelectorAll("article");
+
+      articles.forEach((article, index) => {
+        const galleryId = `gallery-${index}`;
+        const grid = article.querySelector(".grid");
+
+        const images = JSON.parse(article.getAttribute("data-galleries"));
+
+        images.forEach((url, i) => {
+          const a = document.createElement("a");
+          a.href = url;
+          a.classList.add("grid__gallery__image");
+          a.setAttribute("data-gallery", galleryId);
+
+          const img = document.createElement("img");
+          // Miniatura: podemos cambiar /800/600 por /150/100
+          const thumb = url.replace(/\/(\d+)\/(\d+)$/, "/150/100");
+          img.src = thumb;
+          img.alt = `Imagen ${i + 1}`;
+
+          a.appendChild(img);
+          grid.appendChild(a);
+        });
+      });
+
+      GLightbox({
+        selector: ".grid__gallery__image",
+        touchNavigation: true,
+      });
+    });
+  </script>
+
+</body>
+
+</html>
