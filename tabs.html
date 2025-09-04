@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs Responsivos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .tabs-container {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+    }
+
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari */
+    }
+
+    .tab {
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-weight: bold;
+      white-space: nowrap;
+      transition: color 0.3s;
+    }
+
+    .tab[aria-selected="true"] {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+    }
+
+    .more-btn {
+      margin-left: auto;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .more-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .more-menu .tab {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+    }
+
+    .tab-panel {
+      display: none;
+      padding: 20px 0;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .tabs-container {
+        flex-wrap: wrap;
+      }
+
+      .more-btn {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Floorplans</h2>
+
+  <div class="tabs-container">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-target="ground">Ground Floor</button>
+      <button class="tab" role="tab" data-target="pet">Optional Ground Floor Pet Wash</button>
+      <button class="tab" role="tab" data-target="second">Second Floor</button>
+      <button class="tab" role="tab" data-target="basement">Basement</button>
+      <button class="tab" role="tab" data-target="finished">Optional Finished Basement</button>
+      <button class="tab" role="tab" data-target="pool">Finished Basement w/ Pool Room</button>
+    </div>
+    <button class="more-btn">Más ▾</button>
+    <div class="more-menu"></div>
+  </div>
+
+  <!-- Contenido -->
+  <div id="ground" class="tab-panel active">Contenido del Ground Floor</div>
+  <div id="pet" class="tab-panel">Contenido del Pet Wash</div>
+  <div id="second" class="tab-panel">Contenido del Second Floor</div>
+  <div id="basement" class="tab-panel">Contenido del Basement</div>
+  <div id="finished" class="tab-panel">Contenido del Finished Basement</div>
+  <div id="pool" class="tab-panel">Contenido del Pool Room</div>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+    const panels = document.querySelectorAll(".tab-panel");
+    const moreBtn = document.querySelector(".more-btn");
+    const moreMenu = document.querySelector(".more-menu");
+
+    // Evento click en tabs
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        // Reset tabs
+        tabs.forEach(t => t.setAttribute("aria-selected", "false"));
+        tab.setAttribute("aria-selected", "true");
+
+        // Mostrar panel
+        panels.forEach(p => p.classList.remove("active"));
+        document.getElementById(tab.dataset.target).classList.add("active");
+
+        // Cerrar menú más
+        moreMenu.style.display = "none";
+      });
+    });
+
+    // Clonar tabs dentro del menú "Más"
+    tabs.forEach(tab => {
+      const clone = tab.cloneNode(true);
+      moreMenu.appendChild(clone);
+    });
+
+    // Abrir / cerrar menú "Más"
+    moreBtn.addEventListener("click", () => {
+      moreMenu.style.display = moreMenu.style.display === "block" ? "none" : "block";
+    });
+
+    // Cerrar menú si clic fuera
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".tabs-container")) {
+        moreMenu.style.display = "none";
+      }
+    });
+  </script>
+</body>
+
+</html>
