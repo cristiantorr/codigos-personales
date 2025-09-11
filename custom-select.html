@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .custom-select {
+      position: relative;
+      width: 250px;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    .custom-select-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 15px;
+      font-weight: bold;
+      user-select: none;
+    }
+
+    .custom-select-trigger .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .custom-select.open .custom-select-trigger .arrow {
+      transform: rotate(180deg);
+    }
+
+    .custom-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 5px;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    .custom-select.open .custom-options {
+      display: block;
+    }
+
+    .custom-option {
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .custom-option:hover {
+      background: #f1f1f1;
+    }
+
+    .custom-option.disabled {
+      color: #999;
+      cursor: not-allowed;
+      background: #f9f9f9;
+    }
+  </style>
+
+  <div class="custom-select" id="floorplanSelect">
+    <div class="custom-select-trigger">
+      <span id="selectedOption">
+        prueba 1
+      </span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="custom-options">
+
+      <div class="custom-option 0" data-value="prueba 1">
+        prueba
+      </div>
+      <div class="custom-option 1" data-value="prueba 2">
+        prueba
+      </div>
+      <div class="custom-option 2" data-value="prueba 3">
+        prueba
+      </div>
+      <div class="custom-option 3" data-value="prueba 4">
+        prueba
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const customSelect = document.getElementById("floorplanSelect");
+    const trigger = customSelect.querySelector(".custom-select-trigger");
+    const options = customSelect.querySelectorAll(".custom-option");
+    const selected = document.getElementById("selectedOption");
+
+    // Abrir / cerrar
+    trigger.addEventListener("click", () => {
+      customSelect.classList.toggle("open");
+    });
+
+    // Seleccionar opción
+    options.forEach(option => {
+      option.addEventListener("click", () => {
+        if (!option.classList.contains("disabled")) {
+          // Actualizar texto seleccionado
+          selected.textContent = option.dataset.value;
+
+          // Reset deshabilitados
+          options.forEach(o => o.classList.remove("disabled"));
+
+          // Deshabilitar actual
+          option.classList.add("disabled");
+
+          // Cerrar
+          customSelect.classList.remove("open");
+        }
+      });
+    });
+
+    // Cerrar si clic afuera
+    document.addEventListener("click", (e) => {
+      if (!customSelect.contains(e.target)) {
+        customSelect.classList.remove("open");
+      }
+    });
+  </script>
+
+</body>
+
+</html>
