@@ -1,0 +1,50 @@
+<audio id="player" src="pruebacodigo.webm" preload="auto"></audio>
+
+<label for="volumen">Volumen</label>
+<input id="volumen" type="range" min="0" max="100" value="70" step="1" />
+<button id="mute" aria-pressed="false">Silencio</button>
+
+<script>
+  const audio = document.getElementById('player');
+  const volume = document.getElementById('volumen');
+  const muteBtn = document.getElementById('mute');
+
+  // volumen inicial (0..1)
+  audio.volume = volume.value / 100;
+
+  // Al mover el slider: ajusta volumen y, si está pausado, reproduce (primer gesto del usuario)
+  volume.addEventListener('input', () => {
+    audio.volume = volume.value / 100;
+    if (audio.paused) {
+      audio.play().catch(() => {/* ignorar errores si el navegador bloquea */ });
+    }
+    if (audio.muted && audio.volume > 0) {
+      audio.muted = false;
+      muteBtn.setAttribute('aria-pressed', 'false');
+      muteBtn.textContent = 'Silencio';
+    }
+  });
+
+  // Botón de silencio (opcional)
+  muteBtn.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    muteBtn.setAttribute('aria-pressed', String(audio.muted));
+    muteBtn.textContent = audio.muted ? 'Activar sonido' : 'Silencio';
+  });
+</script>
+
+<style>
+  /* Sin controles nativos */
+  #player {
+    display: none;
+  }
+
+  /* Estilos mínimos del slider (opcional) */
+  #volumen {
+    width: 200px;
+  }
+
+  button {
+    margin-left: 8px;
+  }
+</style>
