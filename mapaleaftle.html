@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Mapa Leaflet con Pin Custom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS de Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 100vh;
+      /* que ocupe toda la pantalla */
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <!-- JS de Leaflet -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Coordenadas
+    const coords = [43.6689635, -79.9264525];
+
+    // Inicializar mapa
+    const map = L.map('map').setView(coords, 15);
+
+    // Capa de OpenStreetMap (gratis y sin API key)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 25,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Icono personalizado
+    const customIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png', // puedes cambiar esta URL por otro PNG
+      iconSize: [40, 40], // tamaño del icono
+      iconAnchor: [20, 40], // punto del icono que apunta a la coordenada
+      popupAnchor: [0, -40] // posición del popup respecto al icono
+    });
+
+    // Agregar marcador
+    L.marker(coords, { icon: customIcon })
+      .addTo(map)
+      .bindPopup("<b>Ubicación personalizada</b><br>43.6689635, -79.9264525");
+  </script>
+</body>
+
+</html>
