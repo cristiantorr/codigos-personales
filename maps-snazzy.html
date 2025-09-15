@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Google Map Snazzy Style</title>
+  <meta charset="utf-8" />
+  <style>
+    #mapcenter {
+      height: 800px;
+      width: 100%;
+    }
+  </style>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArIPWdR_NiO9J501wZDRHVbhOgxDz3YTU"></script>
+</head>
+
+<body>
+  <div id="mapcenter"></div>
+
+  <script>
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("mapcenter"), {
+        center: { lat: 43.6696538, lng: -79.9263225 },
+        zoom: 16,
+        styles:
+          [
+            {
+              "featureType": "landscape.man_made",
+              "elementType": "geometry.fill",
+              "stylers": [
+                {
+                  "color": "#e7e5e1"
+                }
+              ]
+            },
+            {
+              "featureType": "landscape.natural",
+              "elementType": "geometry.fill",
+              "stylers": [
+                {
+                  "color": "#b0ddc0"
+                }
+              ]
+            },
+            {
+              "featureType": "poi",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#555555"
+                }
+              ]
+            },
+            {
+              "featureType": "poi",
+              "elementType": "labels.icon",
+              "stylers": [
+                {
+                  "color": "#555555"
+                }
+              ]
+            }
+          ]
+      });
+
+
+      new google.maps.Marker({
+        position: { lat: 43.6696538, lng: -79.9263225 },
+        map,
+        title: "¡Aquí estoy!",
+        icon: {
+          url: './ping-map.png',
+          scaledSize: new google.maps.Size(80, 80),
+        }
+      });
+    }
+
+
+    window.initMap = initMap;
+    window.addEventListener("load", () => {
+      if (typeof google !== "undefined") {
+        initMap();
+      }
+    });
+  </script>
+</body>
+
+</html>
