@@ -1,0 +1,37 @@
+<?php if (!empty($benefit['image'])):
+												$svg_code = file_get_contents(get_attached_file($benefit['image']['ID']));
+
+												if (!empty($benefit['icon_color'])) {
+													$icon_color = esc_attr($benefit['icon_color']);
+
+													$svg_code = preg_replace('/<style.*?<\/style>/is', '', $svg_code);
+
+													$svg_code = preg_replace('/\s(class|fill|stroke)="[^"]*"/i', '', $svg_code);
+
+													$svg_code = preg_replace(
+														'/<svg(.*?)>/i',
+														'<svg$1 width="130" height="130">',
+														$svg_code,
+														1
+													);
+
+
+													$svg_code = preg_replace(
+														'/<(path|rect|circle|ellipse|polygon|line|polyline)(\s|>)/i',
+														'<$1 style="fill:' . $icon_color . ' !important;" $2',
+														$svg_code
+													);
+												} else {
+
+													$svg_code = preg_replace(
+														'/<svg(.*?)>/i',
+														'<svg$1 width="130" height="130">',
+														$svg_code,
+														1
+													);
+												}
+											?>
+												<i>
+													<?php echo $svg_code; ?>
+												</i>
+											<?php endif; ?>
