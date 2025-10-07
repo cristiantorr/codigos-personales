@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Celular animado con scroll</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone {
+      position: relative;
+      width: 120px;
+      height: 220px;
+      border-radius: 20px;
+      background: #333;
+    }
+
+    .part {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+
+    .screen {
+      background: linear-gradient(to bottom, #222, #444);
+      width: 90%;
+      height: 85%;
+      border-radius: 15px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .camera {
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #555;
+      position: absolute;
+    }
+
+    .cover {
+      background: #222;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section>
+    <h1>Haz scroll hacia abajo 📱</h1>
+  </section>
+
+  <section>
+    <div class="phone">
+      <div class="part screen"></div>
+      <div class="part cover"></div>
+      <div class="camera"></div>
+    </div>
+  </section>
+
+  <section>
+    <h1>¡El celular se desarma con scroll!</h1>
+  </section>
+
+  <!-- Anime.js desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    const phone = document.querySelector('.phone');
+    const screen = document.querySelector('.screen');
+    const cover = document.querySelector('.cover');
+    const camera = document.querySelector('.camera');
+
+    window.addEventListener('scroll', () => {
+      // Progreso del scroll (0 a 1)
+      let scrollTop = window.scrollY;
+      let maxScroll = document.body.scrollHeight - window.innerHeight;
+      let progress = scrollTop / maxScroll;
+
+      // Animamos según el progreso
+      anime.set(screen, {
+        translateY: -120 * progress,
+        rotate: -10 * progress
+      });
+
+      anime.set(cover, {
+        translateY: 120 * progress,
+        rotate: 10 * progress
+      });
+
+      anime.set(camera, {
+        translateY: -10 * progress,
+        scale: 1 + 0.5 * progress
+      });
+    });
+  </script>
+</body>
+
+</html>
