@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Animación celular con Anime.js</title>
+  <style>
+    body {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .phone {
+      position: relative;
+      width: 120px;
+      height: 220px;
+      border-radius: 20px;
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .part {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+
+    .screen {
+      background: linear-gradient(to bottom, #222, #444);
+      width: 90%;
+      height: 85%;
+      border-radius: 15px;
+    }
+
+    .camera {
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #555;
+      position: absolute;
+    }
+
+    .cover {
+      background: #222;
+      opacity: 0.5;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="phone">
+    <div class="part screen"></div>
+    <div class="part cover"></div>
+    <div class="camera"></div>
+  </div>
+
+  <!-- Anime.js desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    const phone = document.querySelector('.phone');
+    let open = false;
+
+    phone.addEventListener('click', () => {
+      if (!open) {
+        anime({
+          targets: '.screen',
+          translateY: -120,
+          rotate: -10,
+          easing: 'easeOutElastic(1, .5)',
+          duration: 1500
+        });
+
+        anime({
+          targets: '.cover',
+          translateY: 120,
+          rotate: 10,
+          easing: 'easeOutElastic(1, .5)',
+          duration: 1500
+        });
+
+        anime({
+          targets: '.camera',
+          translateY: -60,
+          scale: 1.5,
+          easing: 'easeOutElastic(1, .5)',
+          duration: 1500
+        });
+
+        open = true;
+      } else {
+        // Regresar las partes
+        anime({
+          targets: '.screen',
+          translateY: 0,
+          rotate: 0,
+          easing: 'easeInOutQuad',
+          duration: 800
+        });
+
+        anime({
+          targets: '.cover',
+          translateY: 0,
+          rotate: 0,
+          easing: 'easeInOutQuad',
+          duration: 800
+        });
+
+        anime({
+          targets: '.camera',
+          translateY: 0,
+          scale: 1,
+          easing: 'easeInOutQuad',
+          duration: 800
+        });
+
+        open = false;
+      }
+    });
+  </script>
+</body>
+</html>
