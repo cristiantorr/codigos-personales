@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Gaussian Splats 3D Working</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+    }
+
+    #loading {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-family: Arial;
+      z-index: 10;
+    }
+  </style>
+
+  <!-- ✅ Importmap for Three.js -->
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/examples/jsm/controls/OrbitControls.js": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js"
+        }
+      }
+    </script>
+</head>
+
+<body>
+  <div id="loading">Loading Splat...</div>
+
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+    // ✅ Correct Import (DEFAULT EXPORT)
+    import GaussianSplats3DViewer from "https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d/build/gaussian-splats-3d.module.js";
+
+    // ============================
+    // Scene Setup
+    // ============================
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      500
+    );
+
+    camera.position.set(0, 1, 4);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.update();
+
+    // ============================
+    // Gaussian Splats Viewer
+    // ============================
+
+    const viewer = new GaussianSplats3DViewer({
+      renderer,
+      camera,
+      scene,
+      useBuiltInControls: false
+    });
+
+    // ============================
+    // Load Example Splat File
+    // ============================
+
+    viewer
+      .addSplatScene(
+        "https://huggingface.co/cakewalk/splats/resolve/main/bicycle.splat"
+      )
+      .then(() => {
+        document.getElementById("loading").style.display = "none";
+        console.log("✅ Splat Loaded!");
+      });
+
+    // ============================
+    // Animation Loop
+    // ============================
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      viewer.update();
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+
+</html>
