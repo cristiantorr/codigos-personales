@@ -1,2 +1,5 @@
 define('DISABLE_WP_CRON', false);
 define('ALTERNATE_WP_CRON', false);
+
+
+wordpress cron es un sistema de tareas programadas que permite ejecutar funciones específicas en momentos determinados. Sin embargo, en algunos casos, como en sitios con alto tráfico o en entornos de desarrollo, puede ser necesario deshabilitar el cron de WordPress para evitar problemas de rendimiento o para tener un mayor control sobre las tareas programadas.
