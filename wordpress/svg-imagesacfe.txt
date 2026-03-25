@@ -37,4 +37,4 @@
 											<?php endif; ?>
 
 
-											svg images
+											svg images for wordpress
