@@ -35,3 +35,6 @@
 													<?php echo $svg_code; ?>
 												</i>
 											<?php endif; ?>
+
+
+											svg images
