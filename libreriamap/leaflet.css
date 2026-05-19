@@ -25,7 +25,7 @@
   user-select: none;
   -webkit-user-drag: none;
 }
-/* Prevents IE11 from highlighting tiles in  */
+/* Prevents IE11 from highlighting tiles in leaftle */
 .leaflet-tile::selection {
   background: transparent;
 }
